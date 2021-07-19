@@ -1,0 +1,6 @@
+version: '0.0.1'
+services:
+  react-todo:
+    build:
+      dockerfile: Dockerfile.server
+      context: .
