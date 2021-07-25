@@ -4,15 +4,14 @@ RUN mkdir /api && chown -R node:node /api
 
 WORKDIR /api
 
-COPY server/ .
-COPY package.json .
+COPY --chown=node:node . .
+
+RUN npm install
+RUN npm run build
+##RUN webpack --config  webpack.config.js
 
 USER node
 
-RUN npm install
+EXPOSE 3000
 
-COPY --chown=node:node . .
-
-EXPOSE 4000
-
-CMD node server.js
+ENTRYPOINT ["node", "server/server.js"]
